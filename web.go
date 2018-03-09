@@ -9,5 +9,5 @@ func web() {
 	r.GET("/ws", func(c *gin.Context) {
 		serveWs(h, c.Writer, c.Request)
 	})
-	r.Run(":8080")
+	r.Run(webAddr)
 }

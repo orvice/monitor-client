@@ -5,11 +5,10 @@ import "github.com/orvice/kit/log"
 var (
 	h      *Hub
 	logger log.Logger
-
-	netInterfaceName string
 )
 
 func main() {
+	InitEnv()
 	h = NewHub()
 	logger = log.NewDefaultLogger()
 	go h.Run()
