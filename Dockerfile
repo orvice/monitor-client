@@ -17,7 +17,7 @@ RUN CGO_ENABLED=0 go build
 
 FROM alpine
 
-COPY --from=builder /go/src/github.com/orvice/vmonitor-client/monitor-client .
+COPY --from=builder /go/src/github.com/orvice/monitor-client/monitor-client .
 
 RUN apk update
 RUN apk upgrade
