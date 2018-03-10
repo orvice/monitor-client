@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+  ss:
+    image: orvice/monitor-client
+    restart: always
+    volumes:
+      - ./log:/var/log
+    environment:
+      - NET_INTERFACE=eth0
+      - WEB_ADDr=:8080
+    container_name: monitor-client
+    network_mode: host
+ 
