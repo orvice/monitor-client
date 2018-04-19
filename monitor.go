@@ -10,6 +10,7 @@ import (
 	"github.com/shirou/gopsutil/load"
 	"github.com/shirou/gopsutil/mem"
 	"github.com/shirou/gopsutil/net"
+	"github.com/shirou/gopsutil/disk"
 )
 
 type monitor struct {
@@ -74,12 +75,18 @@ func (m *monitor) GetInfo() (mod.SystemInfo, error) {
 
 	cpuCount, _ := cpu.Counts(true)
 
+	diskUsage, err := disk.Usage("/")
+	if err != nil {
+		logger.Errorf("get disk usage error: %v ", err)
+	}
+
 	systemInfo := mod.SystemInfo{
 		MemoryStatus: v,
 		AvgLoad:      l,
 		Process:      process,
 		NetSpeed:     speed,
 		CpuCount:     cpuCount,
+		DiskUsage:    diskUsage,
 	}
 
 	if len(cpuTimes) != 0 {

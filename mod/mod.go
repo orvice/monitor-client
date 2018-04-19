@@ -4,6 +4,7 @@ import (
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/load"
 	"github.com/shirou/gopsutil/mem"
+	"github.com/shirou/gopsutil/disk"
 )
 
 type SystemInfo struct {
@@ -13,6 +14,7 @@ type SystemInfo struct {
 	NetSpeed     NetSpeed               `json:"net_speed"`
 	CpuCount     int                    `json:"cpu_count"`
 	CpuTimesStat cpu.TimesStat          `json:"cpu_times_stat"`
+	DiskUsage    *disk.UsageStat        `json:"disk_usage"`
 }
 
 type NetSpeed struct {
