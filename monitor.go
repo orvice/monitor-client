@@ -6,6 +6,7 @@ import (
 
 	"fmt"
 	"github.com/orvice/monitor-client/mod"
+	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/load"
 	"github.com/shirou/gopsutil/mem"
 	"github.com/shirou/gopsutil/net"
@@ -51,6 +52,11 @@ func (m *monitor) GetInfo() (mod.SystemInfo, error) {
 		logger.Errorf("get load error: %v", err)
 	}
 
+	process, err := load.Misc()
+	if err != nil {
+		logger.Errorf("get misc error: %v", err)
+	}
+
 	ns, err := net.IOCounters(true)
 	if err != nil {
 		logger.Errorf("get net io error: %v ", err)
@@ -61,11 +67,26 @@ func (m *monitor) GetInfo() (mod.SystemInfo, error) {
 		logger.Errorf("get net io error: %v ", err)
 	}
 
-	return mod.SystemInfo{
+	cpuTimes, err := cpu.Times(false)
+	if err != nil {
+		logger.Errorf("get cpu times error: %v ", err)
+	}
+
+	cpuCount, _ := cpu.Counts(true)
+
+	systemInfo := mod.SystemInfo{
 		MemoryStatus: v,
 		AvgLoad:      l,
+		Process:      process,
 		NetSpeed:     speed,
-	}, nil
+		CpuCount:     cpuCount,
+	}
+
+	if len(cpuTimes) != 0 {
+		systemInfo.CpuTimesStat = cpuTimes[0]
+	}
+
+	return systemInfo, nil
 }
 
 func (m *monitor) SendInfo() error {
