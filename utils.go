@@ -5,6 +5,6 @@ import (
 )
 
 func UUID() string {
-	u1 := uuid.Must(uuid.NewV4())
-	return u1.String()
+	u2,_ := uuid.NewV4()
+	return u2.String()
 }

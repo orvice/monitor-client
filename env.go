@@ -9,5 +9,5 @@ var (
 
 func InitEnv() {
 	netInterfaceName = env.Get("NET_INTERFACE", "eth0")
-	webAddr = env.Get("WEB_ADDr", ":8080")
+	webAddr = env.Get("WEB_ADDR", ":8080")
 }
