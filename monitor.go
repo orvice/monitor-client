@@ -2,8 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/orvice/monitor-client/enum"
-	"github.com/orvice/monitor-client/utils"
 	"time"
 
 	"fmt"
@@ -44,13 +42,8 @@ func (m *monitor) GetNetSpeed(n net.IOCountersStat) mod.NetSpeed {
 }
 
 func (m *monitor) GetNetInfo() mod.NetInfo {
-	var out mod.NetInfo
 
-	out.Status = enum.ServerStatusOK
-	if utils.IsGfwed() {
-		out.Status = enum.ServerStatusGFWed
-	}
-	return out
+	return lastNetInfo
 }
 
 func (m *monitor) GetInfo() (mod.SystemInfo, error) {

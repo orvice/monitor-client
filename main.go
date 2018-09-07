@@ -13,6 +13,7 @@ func main() {
 	logger = log.NewDefaultLogger()
 	go h.Run()
 	go web()
+	go netInfoTask()
 	monitor := newMonitor()
 	go monitor.Daemon()
 	select {}
