@@ -2,15 +2,17 @@ package main
 
 import (
 	"encoding/json"
+	"github.com/orvice/monitor-client/enum"
+	"github.com/orvice/monitor-client/utils"
 	"time"
 
 	"fmt"
 	"github.com/orvice/monitor-client/mod"
 	"github.com/shirou/gopsutil/cpu"
+	"github.com/shirou/gopsutil/disk"
 	"github.com/shirou/gopsutil/load"
 	"github.com/shirou/gopsutil/mem"
 	"github.com/shirou/gopsutil/net"
-	"github.com/shirou/gopsutil/disk"
 )
 
 type monitor struct {
@@ -39,6 +41,16 @@ func (m *monitor) GetNetSpeed(n net.IOCountersStat) mod.NetSpeed {
 	}
 	m.lastNetStat = n
 	return ret
+}
+
+func (m *monitor) GetNetInfo() mod.NetInfo {
+	var out mod.NetInfo
+
+	out.Status = enum.ServerStatusOK
+	if utils.IsGfwed() {
+		out.Status = enum.ServerStatusGFWed
+	}
+	return out
 }
 
 func (m *monitor) GetInfo() (mod.SystemInfo, error) {
@@ -87,6 +99,7 @@ func (m *monitor) GetInfo() (mod.SystemInfo, error) {
 		NetSpeed:     speed,
 		CpuCount:     cpuCount,
 		DiskUsage:    diskUsage,
+		NetInfo:      m.GetNetInfo(),
 	}
 
 	if len(cpuTimes) != 0 {
