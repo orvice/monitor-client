@@ -5,6 +5,7 @@ import "github.com/orvice/kit/log"
 var (
 	h      *Hub
 	logger log.Logger
+	mtr    *monitor
 )
 
 func main() {
@@ -14,7 +15,7 @@ func main() {
 	go h.Run()
 	go web()
 	go netInfoTask()
-	monitor := newMonitor()
-	go monitor.Daemon()
+	mtr = newMonitor()
+	go mtr.Daemon()
 	select {}
 }
