@@ -93,6 +93,7 @@ func (m *monitor) GetInfo() (mod.SystemInfo, error) {
 		CpuCount:     cpuCount,
 		DiskUsage:    diskUsage,
 		NetInfo:      m.GetNetInfo(),
+		NetStat:      stat,
 	}
 
 	if len(cpuTimes) != 0 {
