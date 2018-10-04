@@ -45,7 +45,6 @@ func (h *Hub) RemoveConn(c Conn) {
 }
 
 func (h *Hub) MessageHandle(p packet) {
-
 }
 
 func (h *Hub) Broadcast(m []byte) error {
@@ -57,6 +56,10 @@ func (h *Hub) Broadcast(m []byte) error {
 	}
 
 	return nil
+}
+
+func(h *Hub) GetClientLen() int{
+	return len(h.clients)
 }
 
 func (h *Hub) Run() {

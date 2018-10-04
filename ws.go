@@ -47,7 +47,11 @@ type Client struct {
 }
 
 func (c *Client) Send(m []byte) error {
-	c.send <- m
+	select{
+	case c.send <- m:
+	default:
+	}
+
 	return nil
 }
 
