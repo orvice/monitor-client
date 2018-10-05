@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net"
+	"time"
 
 	"github.com/orvice/monitor-client/proto"
 	"google.golang.org/grpc"
@@ -43,6 +44,7 @@ func (s *Server) Stream(req *monitorClient.StreamRequest, stream monitorClient.M
 			Body: string(s),
 		}
 		stream.Send(resp)
+		time.Sleep(time.Second)
 	}
 	return nil
 }
