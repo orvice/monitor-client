@@ -17,5 +17,6 @@ func main() {
 	go netInfoTask()
 	mtr = newMonitor()
 	go mtr.Daemon()
+	go pprof()
 	select {}
 }
