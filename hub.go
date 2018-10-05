@@ -58,7 +58,7 @@ func (h *Hub) Broadcast(m []byte) error {
 	return nil
 }
 
-func(h *Hub) GetClientLen() int{
+func (h *Hub) GetClientLen() int {
 	return len(h.clients)
 }
 

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package monitorClient;
+
+enum StreamType {
+  None = 0;
+
+}
+
+service MonitorClient {
+  rpc Stream (StreamRequest) returns (stream StreamResponse) {}
+}
+
+message StreamRequest {
+  string Token = 1;
+}
+
+message StreamResponse {
+  StreamType Type = 1;
+  string Body = 2;
+}
