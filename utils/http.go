@@ -13,10 +13,11 @@ var (
 func IsGfwed() bool {
 	var failCount int
 	for _, v := range cnUrls {
-		_, err := http.DefaultClient.Get(v)
+		resp, err := http.DefaultClient.Get(v)
 		if err != nil {
 			failCount++
 		}
+		resp.Body.Close()
 	}
 	if failCount > len(cnUrls)/2 {
 		return true
