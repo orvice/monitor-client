@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"sync"
 	"time"
 
 	"fmt"
@@ -15,10 +16,19 @@ import (
 
 type monitor struct {
 	lastNetStat net.IOCountersStat
+	modPool     *sync.Pool
 }
 
 func newMonitor() *monitor {
-	return new(monitor)
+	mr := new(monitor)
+	p := &sync.Pool{
+		New: func() interface{} {
+			return mod.SystemInfo{}
+		},
+	}
+
+	mr.modPool = p
+	return mr
 }
 
 func (m *monitor) getNetStat(ns []net.IOCountersStat) (net.IOCountersStat, error) {
@@ -85,22 +95,22 @@ func (m *monitor) GetInfo() (mod.SystemInfo, error) {
 		logger.Errorf("get disk usage error: %v ", err)
 	}
 
-	systemInfo := mod.SystemInfo{
-		MemoryStatus: v,
-		AvgLoad:      l,
-		Process:      process,
-		NetSpeed:     speed,
-		CpuCount:     cpuCount,
-		DiskUsage:    diskUsage,
-		NetInfo:      m.GetNetInfo(),
-		NetStat:      stat,
-	}
+	out := m.modPool.Get().(mod.SystemInfo)
+
+	out.MemoryStatus = v
+	out.AvgLoad = l
+	out.Process = process
+	out.NetSpeed = speed
+	out.CpuCount = cpuCount
+	out.DiskUsage = diskUsage
+	out.NetInfo = m.GetNetInfo()
+	out.NetStat = stat
 
 	if len(cpuTimes) != 0 {
-		systemInfo.CpuTimesStat = cpuTimes[0]
+		out.CpuTimesStat = cpuTimes[0]
 	}
 
-	return systemInfo, nil
+	return out, nil
 }
 
 func (m *monitor) SendInfo() error {
