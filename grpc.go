@@ -31,7 +31,10 @@ func newServer() *Server {
 
 func (s *Server) Stream(req *monitorClient.StreamRequest, stream monitorClient.MonitorClient_StreamServer) error {
 	for {
-		res := mtr.GetNetInfo()
+		res, err := mtr.GetInfo()
+		if err != nil {
+			continue
+		}
 		s, err := json.Marshal(res)
 		if err != nil {
 			continue
