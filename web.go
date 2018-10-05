@@ -9,9 +9,13 @@ func web() {
 	r := gin.Default()
 	r.GET("/", index)
 	r.GET("/status", status)
-	r.GET("/ws", func(c *gin.Context) {
-		serveWs(h, c.Writer, c.Request)
-	})
+
+	if enableWS {
+		r.GET("/ws", func(c *gin.Context) {
+			serveWs(h, c.Writer, c.Request)
+		})
+	}
+
 	r.Run(webAddr)
 }
 

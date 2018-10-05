@@ -18,5 +18,6 @@ func main() {
 	mtr = newMonitor()
 	go mtr.Daemon()
 	go pprof()
+	go handleGrpc()
 	select {}
 }
