@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
+	"bytes"
 	"fmt"
 	"github.com/orvice/monitor-client/mod"
 	"github.com/shirou/gopsutil/cpu"
@@ -11,6 +12,7 @@ import (
 	"github.com/shirou/gopsutil/load"
 	"github.com/shirou/gopsutil/mem"
 	"github.com/shirou/gopsutil/net"
+	"net/http"
 )
 
 type monitor struct {
@@ -112,8 +114,24 @@ func (m *monitor) SendInfo() error {
 	if err != nil {
 		return err
 	}
+
+	m.postStat(b)
 	h.Broadcast(b)
 	return nil
+}
+
+func (m *monitor) postStat(b []byte) {
+	if len(postUrl) == 0 {
+		return
+	}
+	req, err := http.NewRequest("POST", postUrl, bytes.NewBuffer(b))
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		logger.Error("post error: ", err)
+	}
+	defer resp.Body.Close()
+	return
 }
 
 func (m *monitor) Daemon() {
