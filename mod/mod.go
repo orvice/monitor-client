@@ -30,3 +30,8 @@ type NetSpeed struct {
 type NetInfo struct {
 	Status int32 `json:"status"`
 }
+
+type NodeStat struct {
+	NodeID int32      `json:"node_id"`
+	Stat   SystemInfo `json:"stat"`
+}
