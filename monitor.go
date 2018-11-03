@@ -129,6 +129,7 @@ func (m *monitor) postStat(b []byte) {
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		logger.Error("post error: ", err)
+		return
 	}
 	defer resp.Body.Close()
 	return
