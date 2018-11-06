@@ -1,16 +1,16 @@
-FROM golang:1.10 as builder
+FROM golang:1.11 as builder
 
-## Create a directory and Add Code
-RUN mkdir -p /go/src/github.com/orvice/monitor-client
-WORKDIR /go/src/github.com/orvice/monitor-client
-ADD .  /go/src/github.com/orvice/monitor-client
+WORKDIR /home/app
+COPY go.mod go.sum ./
 
-RUN go get
-RUN CGO_ENABLED=0 go build
+RUN go mod download
+
+COPY . .
+RUN CGO_ENABLED=0 go build -o monitor-client
 
 
-FROM orvice/go-runtime
+FROM orvice/go-runtime:lite
 
-COPY --from=builder /go/src/github.com/orvice/monitor-client/monitor-client .
+COPY --from=builder /home/app/monitor-client .
 
 ENTRYPOINT [ "./monitor-client" ]
