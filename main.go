@@ -1,4 +1,4 @@
-package main
+package main // import "github.com/orvice/monitor-client"
 
 import "github.com/orvice/kit/log"
 

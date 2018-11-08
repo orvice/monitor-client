@@ -16,7 +16,8 @@ import (
 )
 
 type monitor struct {
-	lastNetStat net.IOCountersStat
+	lastNetStat  net.IOCountersStat
+	lastNetSpeed mod.NetSpeed
 }
 
 func newMonitor() *monitor {
@@ -32,7 +33,26 @@ func (m *monitor) getNetStat(ns []net.IOCountersStat) (net.IOCountersStat, error
 	return net.IOCountersStat{}, fmt.Errorf("net interface %s not found", netInterfaceName)
 }
 
-func (m *monitor) GetNetSpeed(n net.IOCountersStat) mod.NetSpeed {
+func (m *monitor) NetSpeedDaemon() {
+	for {
+		m.setNetSpeed()
+		time.Sleep(time.Second)
+	}
+}
+
+func (m *monitor) GetNetSpeed() mod.NetSpeed {
+	return m.lastNetSpeed
+}
+
+func (m *monitor) setNetSpeed() error {
+	ns, err := net.IOCounters(true)
+	if err != nil {
+		logger.Errorf("get net io error: %v ", err)
+	}
+	n, err := m.getNetStat(ns)
+	if err != nil {
+		return err
+	}
 	ret := mod.NetSpeed{
 		BytesRecv:   n.BytesRecv - m.lastNetStat.BytesRecv,
 		BytesSent:   n.BytesSent - m.lastNetStat.BytesSent,
@@ -40,7 +60,8 @@ func (m *monitor) GetNetSpeed(n net.IOCountersStat) mod.NetSpeed {
 		PacketsSent: n.PacketsSent - m.lastNetStat.PacketsSent,
 	}
 	m.lastNetStat = n
-	return ret
+	m.lastNetSpeed = ret
+	return nil
 }
 
 func (m *monitor) GetNetInfo() mod.NetInfo {
@@ -70,7 +91,8 @@ func (m *monitor) GetInfo() (mod.SystemInfo, error) {
 		logger.Errorf("get net io error: %v ", err)
 	}
 	stat, err := m.getNetStat(ns)
-	speed := m.GetNetSpeed(stat)
+
+	speed := m.GetNetSpeed()
 	if err != nil {
 		logger.Errorf("get net io error: %v ", err)
 	}
@@ -136,6 +158,7 @@ func (m *monitor) postStat(b []byte) {
 }
 
 func (m *monitor) Daemon() {
+	go m.NetSpeedDaemon()
 	for {
 		err := m.SendInfo()
 		if err != nil {
