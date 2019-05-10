@@ -17,6 +17,7 @@ require (
 	github.com/orvice/utils v0.0.0-20180715141935-5b71615d9c36
 	github.com/shirou/gopsutil v2.18.10+incompatible
 	github.com/sirupsen/logrus v1.2.0 // indirect
+	github.com/ugorji/go v1.1.4 // indirect
 	golang.org/x/crypto v0.0.0-20181030102418-4d3f4d9ffa16 // indirect
 	golang.org/x/net v0.0.0-20181102091132-c10e9556a7bc
 	golang.org/x/sys v0.0.0-20181031143558-9b800f95dbbc // indirect
