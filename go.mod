@@ -14,6 +14,7 @@ require (
 	github.com/satori/go.uuid v1.2.0
 	github.com/shirou/gopsutil v2.18.10+incompatible
 	github.com/sirupsen/logrus v1.2.0
+	github.com/ugorji/go v1.1.4 // indirect
 	github.com/ugorji/go/codec v0.0.0-20181022190402-e5e69e061d4f // indirect
 	golang.org/x/crypto v0.0.0-20181030102418-4d3f4d9ffa16
 	golang.org/x/lint v0.0.0-20181026193005-c67002cb31c3 // indirect
