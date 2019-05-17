@@ -5,11 +5,13 @@ services:
     image: orvice/monitor-client
     restart: always
     volumes:
-      - ./log:/var/log
+      - ./log:/app/log
     environment:
       - NET_INTERFACE=eth0
       - WEB_ADDR=:8080
       - GRPC_ADDR=:8090
+      - POST_URL=https://demo.pokemon.men/nodes/1
+      - POST_KEY=key
     container_name: monitor-client
     network_mode: host
  
