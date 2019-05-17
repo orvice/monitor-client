@@ -5,4 +5,6 @@ const (
 	ServerStatusOK      int32 = 1
 	ServerStatusDown    int32 = -1
 	ServerStatusGFWed   int32 = -2
+
+	PostKey = "Post-Key"
 )

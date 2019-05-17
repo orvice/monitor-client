@@ -1,4 +1,4 @@
-package main
+package stat
 
 import (
 	"github.com/orvice/monitor-client/enum"
@@ -9,7 +9,7 @@ import (
 
 var lastNetInfo mod.NetInfo
 
-func netInfoTask() {
+func NetInfoTask() {
 	for {
 		netInfoUpdate()
 		time.Sleep(time.Second)

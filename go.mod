@@ -12,6 +12,10 @@ require (
 	github.com/orvice/kit v0.0.0-20190224124836-1d905413b870
 	github.com/orvice/utils v0.0.0-20180715141935-5b71615d9c36
 	github.com/shirou/gopsutil v2.18.12+incompatible
+	github.com/weeon/contract v0.0.0-20190510071243-5d5297a1e668
+	github.com/weeon/log v0.0.0-20190503044751-28d9bf4b0af3
+	github.com/weeon/utils v0.0.0-20190516112522-ce31b0983b8b // indirect
+	go.uber.org/zap v1.10.0
 	golang.org/x/net v0.0.0-20190509222800-a4d6f7feada5
 	google.golang.org/grpc v1.20.1
 )

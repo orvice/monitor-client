@@ -1,17 +1,15 @@
 package main
 
 import (
-	"encoding/json"
-	"log"
-	"net"
-	"time"
-
+	"github.com/orvice/monitor-client/internal/config"
 	"github.com/orvice/monitor-client/proto"
 	"google.golang.org/grpc"
+	"log"
+	"net"
 )
 
 func handleGrpc() error {
-	lis, err := net.Listen("tcp", grpcAddr)
+	lis, err := net.Listen("tcp", config.GrpcAddr)
 	if err != nil {
 		log.Println("failed to listen grpc server ", err)
 		return err
@@ -30,21 +28,7 @@ func newServer() *Server {
 	return new(Server)
 }
 
+// @todo
 func (s *Server) Stream(req *monitorClient.StreamRequest, stream monitorClient.MonitorClient_StreamServer) error {
-	for {
-		res, err := mtr.GetInfo()
-		if err != nil {
-			continue
-		}
-		s, err := json.Marshal(res)
-		if err != nil {
-			continue
-		}
-		resp := &monitorClient.StreamResponse{
-			Body: string(s),
-		}
-		stream.Send(resp)
-		time.Sleep(time.Second)
-	}
 	return nil
 }

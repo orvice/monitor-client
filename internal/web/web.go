@@ -1,26 +1,26 @@
-package main
+package web
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/orvice/monitor-client/internal/config"
+	"github.com/orvice/monitor-client/internal/hub"
 	"net/http"
 )
 
-func web() {
+func Init() {
 	r := gin.Default()
 	r.GET("/", index)
 	r.GET("/status", status)
 
-	if enableWS {
-		r.GET("/ws", func(c *gin.Context) {
-			serveWs(h, c.Writer, c.Request)
-		})
+	err := r.Run(config.WebAddr)
+	if err != nil {
+		fmt.Println("init web error", err)
 	}
-
-	r.Run(webAddr)
 }
 
 func index(c *gin.Context) {
-	ni, err := mtr.GetInfo()
+	ni, err := hub.Monitor.GetInfo()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": err.Error(),
@@ -30,11 +30,9 @@ func index(c *gin.Context) {
 }
 
 func status(c *gin.Context) {
-	ni, err := mtr.GetInfo()
+	ni, err := hub.Monitor.GetInfo()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, map[string]interface{}{
-			"clients_count": h.GetClientLen(),
-		})
+		c.JSON(http.StatusInternalServerError, map[string]interface{}{})
 	}
 	c.JSON(http.StatusOK, ni)
 }
