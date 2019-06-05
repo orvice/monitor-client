@@ -6,6 +6,7 @@ import (
 	"github.com/orvice/monitor-client/internal/config"
 	"github.com/orvice/monitor-client/internal/hub"
 	"net/http"
+	"time"
 )
 
 func Init() {
@@ -20,13 +21,9 @@ func Init() {
 }
 
 func index(c *gin.Context) {
-	ni, err := hub.Monitor.GetInfo()
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, map[string]interface{}{
-			"error": err.Error(),
-		})
-	}
-	c.JSON(http.StatusOK, ni)
+	c.JSON(http.StatusOK, map[string]interface{}{
+		"time": time.Now().Unix(),
+	})
 }
 
 func status(c *gin.Context) {
