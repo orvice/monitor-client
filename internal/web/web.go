@@ -23,6 +23,7 @@ func Init() {
 func index(c *gin.Context) {
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"time": time.Now().Unix(),
+		"header": c.Request.Header,
 	})
 }
 
