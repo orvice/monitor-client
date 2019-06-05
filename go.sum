@@ -111,6 +111,8 @@ github.com/weeon/contract v0.0.0-20190510071243-5d5297a1e668 h1:wBoshyu8674pc5ut
 github.com/weeon/contract v0.0.0-20190510071243-5d5297a1e668/go.mod h1:Lu4Rx+OfCPH1ljtEpsravnbAYjVCwGKYe1kd1oNIwX0=
 github.com/weeon/log v0.0.0-20190503044751-28d9bf4b0af3 h1:PygG7GpbE6q8grXpC7lFSRLjNL/nvpi4DKvrLxEoDIE=
 github.com/weeon/log v0.0.0-20190503044751-28d9bf4b0af3/go.mod h1:Nie/q+jrMcehLWMQwS45ImQeDlf5chFDt7YJeGSmB1k=
+github.com/weeon/log v0.0.0-20190524040732-54053500b7f1 h1:ornJexmkapZIpfsnAgtKuVwH+8pYiLToNehRgAnsowQ=
+github.com/weeon/log v0.0.0-20190524040732-54053500b7f1/go.mod h1:wOFRu/oZvMpYwFLFNPrD5XAJba6YaWUmq/UVvXp62fY=
 github.com/weeon/utils v0.0.0-20190516112522-ce31b0983b8b h1:rmKP6ahYopg7GlYkTYnAsU5Q4/NVg+J6FLKk2VA2c/k=
 github.com/weeon/utils v0.0.0-20190516112522-ce31b0983b8b/go.mod h1:3xD9YYf6Fj4/FjykKOBcrND6NaFizZJcErbQIVmG6MM=
 go.uber.org/atomic v1.3.2 h1:2Oa65PReHzfn29GpvgsYwloV9AVFHPDk8tYxt2c2tr4=

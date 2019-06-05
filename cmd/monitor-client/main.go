@@ -14,6 +14,7 @@ import (
 func main() {
 	var err error
 	config.InitEnv()
+	log.FastInitFileLogger()
 	hub.Logger, err = log.NewLogger("/app/log/monitor-client.log", zap.DebugLevel)
 	if err != nil {
 		fmt.Println("init logger err", err)
