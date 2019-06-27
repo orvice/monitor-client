@@ -4,16 +4,18 @@ import (
 	"github.com/orvice/monitor-client/enum"
 	"github.com/orvice/monitor-client/mod"
 	"github.com/orvice/monitor-client/utils"
+	"github.com/weeon/log"
+	"github.com/weeon/utils/task"
 	"time"
 )
 
 var lastNetInfo mod.NetInfo
 
 func NetInfoTask() {
-	for {
+	task.NewTaskAndRun("netInfoUpdate",time.Minute,func()error{
 		netInfoUpdate()
-		time.Sleep(time.Second)
-	}
+		return nil
+	},task.SetTaskLogger(log.GetDefault()))
 }
 
 func netInfoUpdate() {

@@ -7,6 +7,13 @@ var (
 		"http://189.cn/",
 		"http://www.10010.com",
 		"http://10086.cn",
+
+		"https://oss-cn-hangzhou.aliyuncs.com/",
+		"https://oss-cn-shanghai.aliyuncs.com",
+		"https://oss-cn-qingdao.aliyuncs.com",
+		"https://oss-cn-beijing.aliyuncs.com/",
+		"https://oss-cn-shenzhen.aliyuncs.com/",
+		"https://oss-cn-chengdu.aliyuncs.com/",
 	}
 )
 
