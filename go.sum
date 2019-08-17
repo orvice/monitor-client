@@ -33,8 +33,11 @@ github.com/google/btree v0.0.0-20180813153112-4030bb1f1f0c/go.mod h1:lNA+9X1NB3Z
 github.com/gorilla/websocket v1.4.0 h1:WDFjx/TMzVgy9VdMMQi2K2Emtwi2QcUQsztZ/zLaH/Q=
 github.com/gorilla/websocket v1.4.0/go.mod h1:E7qHFY5m1UJ88s3WnNqhKjPHQ0heANvMoAMk2YaljkQ=
 github.com/hashicorp/consul v1.4.2/go.mod h1:mFrjN1mfidgJfYP1xrJCF+AfRhr6Eaqhb2+sfyn/OOI=
+github.com/hashicorp/consul/api v1.1.0/go.mod h1:VmuI/Lkw1nC05EYQWNKwWGbkg+FbDBtguAZLlVdkD9Q=
+github.com/hashicorp/consul/sdk v0.1.1/go.mod h1:VKf9jXwCTEY1QZP2MOLRhb5i/I/ssyNV1vwHyQBF0x8=
 github.com/hashicorp/errwrap v1.0.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
 github.com/hashicorp/go-cleanhttp v0.5.0/go.mod h1:JpRdi6/HCYpAwUzNwuwqhbovhLtngrth3wmdIIUrZ80=
+github.com/hashicorp/go-cleanhttp v0.5.1/go.mod h1:JpRdi6/HCYpAwUzNwuwqhbovhLtngrth3wmdIIUrZ80=
 github.com/hashicorp/go-immutable-radix v1.0.0/go.mod h1:0y9vanUI8NX6FsYoO3zeMjhV/C5i9g4Q3DwcSNZ4P60=
 github.com/hashicorp/go-msgpack v0.5.3/go.mod h1:ahLV/dePpqEmjfWmKiqvPkv/twdG7iPBM1vqhUKIvfM=
 github.com/hashicorp/go-multierror v1.0.0/go.mod h1:dHtQlpGsu+cZNNAkkCN/P3hoUDHhCYQXV3UM06sGGrk=
@@ -81,6 +84,8 @@ github.com/onsi/ginkgo v1.7.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+W
 github.com/onsi/gomega v1.4.3/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1CpauHY=
 github.com/orvice/kit v0.0.0-20190224124836-1d905413b870 h1:rGJLgGgFZE/vLZSS4dS8c4eK0hAztfXuEvPA1cd3qPA=
 github.com/orvice/kit v0.0.0-20190224124836-1d905413b870/go.mod h1:3tZ8BFpizCfBleN52/6arr6KQMYxu1e91S/a3bXc6HU=
+github.com/orvice/kit v0.0.0-20190817122528-16246295a575 h1:kl148sqXVv4HE04RczTGsfAn7pYlR+IfpeuP9Id1nB8=
+github.com/orvice/kit v0.0.0-20190817122528-16246295a575/go.mod h1:dJrtgo88Eg9+OF88pmDNhNKkW6D/hWu7Aondzd/EBrk=
 github.com/orvice/utils v0.0.0-20180715141935-5b71615d9c36 h1:AuGKyNjW6iAb+IGZbQFRPyjJjVR1o/vkCPZIXjOLU1k=
 github.com/orvice/utils v0.0.0-20180715141935-5b71615d9c36/go.mod h1:2WVdjh2swOycvNPtGpbP49+Idjavuop9pfYr8RytRfs=
 github.com/pascaldekloe/goe v0.0.0-20180627143212-57f6aae5913c/go.mod h1:lzWF7FIEvWOWxwDKqyGYQf6ZUaNfKdP144TG7ZOy1lc=
