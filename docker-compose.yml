@@ -1,8 +1,8 @@
 version: "2"
 
 services:
-  ss:
-    image: orvice/monitor-client
+  monitor-client:
+    image: quay.io/orvice/monitor-client:latest
     restart: always
     volumes:
       - ./log:/app/log

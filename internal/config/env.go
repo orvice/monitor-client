@@ -1,6 +1,6 @@
 package config
 
-import "github.com/orvice/utils/env"
+import "os"
 
 var (
 	NetInterfaceName string
@@ -11,9 +11,17 @@ var (
 )
 
 func InitEnv() {
-	NetInterfaceName = env.Get("NET_INTERFACE", "eth0")
-	WebAddr = env.Get("WEB_ADDR", ":8080")
-	GrpcAddr = env.Get("GRPC_ADDR", ":8090")
-	PostUrl = env.Get("POST_URL")
-	PostKey = env.Get("POST_KEY")
+	NetInterfaceName = getEvn("NET_INTERFACE", "eth0")
+	WebAddr = getEvn("WEB_ADDR", ":8080")
+	GrpcAddr = getEvn("GRPC_ADDR", ":8090")
+	PostUrl = getEvn("POST_URL")
+	PostKey = getEvn("POST_KEY")
+}
+
+func getEvn(key string, df ...string) string {
+	v := os.Getenv(key)
+	if len(v) == 0 && len(df) != 0 {
+		return df[0]
+	}
+	return v
 }
