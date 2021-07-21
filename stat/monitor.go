@@ -37,9 +37,14 @@ func (m *Monitor) getNetStat(ns []net.IOCountersStat) (net.IOCountersStat, error
 }
 
 func (m *Monitor) NetSpeedDaemon() {
+	d := time.Second
+	tick := time.NewTicker(d)
 	for {
-		m.setNetSpeed()
-		time.Sleep(time.Second)
+		select {
+		case <-tick.C:
+			_ = m.setNetSpeed()
+			tick.Reset(d)
+		}
 	}
 }
 
