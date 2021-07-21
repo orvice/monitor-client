@@ -1,4 +1,4 @@
-FROM golang:1.13 as builder
+FROM golang:1.16 as builder
 
 ARG ARG_GOPROXY
 ENV GOPROXY $ARG_GOPROXY
@@ -12,10 +12,8 @@ COPY . .
 RUN make build
 
 
-FROM orvice/go-runtime
+FROM quay.io/orvice/go-runtime:latest
 
 ENV PROJECT_NAME monitor-client
 
 COPY --from=builder /home/app/bin/${PROJECT_NAME} .
-
-ENTRYPOINT "./monitor-client"
