@@ -1,5 +1,6 @@
 variables:
   IMAGE_NAME: $CI_BUILD_RG/orvice/${CI_PROJECT_NAME}
+  BIN_OUTPUT: bin/monitor-client
 
 image: docker:latest
 services:
@@ -12,5 +13,13 @@ stages:
 include:
   - project: 'ops-public/ci-templates'
     file: 'build/go-docker.yml'
-  - project: 'ops-public/ci-templates'
-    file: 'build/go-bin.yml'
+
+build-bin:
+  image:
+    name: golang:1.16
+  stage: build
+  tags:
+    - docker
+  artifacts:
+    paths:
+      - $BIN_OUTPUT
