@@ -41,6 +41,8 @@ build-deb:
       - ${DEB_PKG}.deb
   script:
     - ./build/build_deb.sh
+  dependencies:
+    - build-bin
 
 deploy:
   stage: deploy
@@ -52,8 +54,8 @@ deploy:
   script:
     - rclone config file
     - echo "${RCLONE_CONF}" >> /root/.config/rclone/rclone.conf
-    - rclone copy ${DEB_PKG}.deb  ${RCLONE_DST}/deb/${DEB_PKG}.deb
-    - rclone copy ${BIN_OUTPUT}  ${RCLONE_DST}/${BIN_OUTPUT}
+    - rclone copy ${DEB_PKG}.deb  ${RCLONE_DST}/deb
+    - rclone copy ${BIN_OUTPUT}  ${RCLONE_DST}/bin
   only:
    - master
    - tags
