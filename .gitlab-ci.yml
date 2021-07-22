@@ -1,7 +1,8 @@
 variables:
+  APP_NAME: monitor-client
   IMAGE_NAME: $CI_BUILD_RG/orvice/${CI_PROJECT_NAME}
   BIN_OUTPUT: bin/monitor-client
-  DEB_OUTPUT: bin/monitor-client.deb
+  DEB_PKG: monitor-client_${CI_COMMIT_REF_NAME}-1_arm64
 
 image: docker:latest
 services:
@@ -37,7 +38,6 @@ build-deb:
     - docker
   artifacts:
     paths:
-      - $DEB_OUTPUT
+      - ${DEB_PKG}.deb
   script:
     - ./build/build_deb.sh
-    - ls

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE_DIR=monitor-client_0.0.1-1_arm64
+BASE_DIR=$DEB_PKG
 BIN_DIR=${BASE_DIR}/usr/local/bin
 mkdir -p $BIN_DIR
 
