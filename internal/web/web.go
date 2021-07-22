@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/orvice/monitor-client/internal/config"
 	"github.com/orvice/monitor-client/internal/hub"
+	"github.com/orvice/monitor-client/pkg/vnstat"
 	"net/http"
 	"time"
 )
@@ -13,6 +14,7 @@ func Init() {
 	r := gin.Default()
 	r.GET("/", index)
 	r.GET("/status", status)
+	r.GET("/vnstat/:interface", vnstatInterface)
 
 	err := r.Run(config.WebAddr)
 	if err != nil {
@@ -22,7 +24,7 @@ func Init() {
 
 func index(c *gin.Context) {
 	c.JSON(http.StatusOK, map[string]interface{}{
-		"time": time.Now().Unix(),
+		"time":   time.Now().Unix(),
 		"header": c.Request.Header,
 	})
 }
@@ -33,4 +35,8 @@ func status(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{})
 	}
 	c.JSON(http.StatusOK, ni)
+}
+
+func vnstatInterface(c *gin.Context) {
+	c.JSON(200, vnstat.VN(c.Param("interface")))
 }

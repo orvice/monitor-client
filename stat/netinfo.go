@@ -12,10 +12,10 @@ import (
 var lastNetInfo mod.NetInfo
 
 func NetInfoTask() {
-	task.NewTaskAndRun("netInfoUpdate",time.Minute,func()error{
+	task.NewTaskAndRun("netInfoUpdate", time.Minute, func() error {
 		netInfoUpdate()
 		return nil
-	},task.SetTaskLogger(log.GetDefault()))
+	}, task.SetTaskLogger(log.GetDefault()))
 }
 
 func netInfoUpdate() {

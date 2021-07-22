@@ -12,3 +12,5 @@ stages:
 include:
   - project: 'ops-public/ci-templates'
     file: 'build/go-docker.yml'
+  - project: 'ops-public/ci-templates'
+    file: 'build/go-bin.yml'
