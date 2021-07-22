@@ -23,3 +23,6 @@ build-bin:
   artifacts:
     paths:
       - $BIN_OUTPUT
+  script:
+    - go mod download
+    - make build
