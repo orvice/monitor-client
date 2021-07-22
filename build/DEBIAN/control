@@ -1,5 +1,5 @@
 Package: monitor-client
 Version: 0.0.1
-Architecture: arm64
+Architecture: amd64
 Maintainer: orvice <orvice@orx.me>
 Description: A monitor tools.
