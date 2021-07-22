@@ -2,7 +2,7 @@ variables:
   APP_NAME: monitor-client
   IMAGE_NAME: $CI_BUILD_RG/orvice/${CI_PROJECT_NAME}
   BIN_OUTPUT: bin/monitor-client
-  DEB_PKG: monitor-client_${CI_COMMIT_REF_NAME}-1_arm64
+  DEB_PKG: monitor-client_${CI_COMMIT_REF_NAME}-1_amd64
 
 image: docker:latest
 services:
