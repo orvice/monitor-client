@@ -53,6 +53,7 @@ deploy:
     - rclone config file
     - echo "${RCLONE_CONF}" >> /root/.config/rclone/rclone.conf
     - rclone copy ${DEB_PKG}.deb  ${RCLONE_DST}/deb/${DEB_PKG}.deb
+    - rclone copy ${BIN_OUTPUT}  ${RCLONE_DST}/${BIN_OUTPUT}
   only:
    - master
    - tags
