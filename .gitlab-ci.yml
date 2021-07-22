@@ -41,3 +41,18 @@ build-deb:
       - ${DEB_PKG}.deb
   script:
     - ./build/build_deb.sh
+
+deploy:
+  stage: deploy
+  image: quay.io/orvice/ubuntu-full
+  tags:
+    - docker
+  environment:
+    name: production
+  script:
+    - rclone config file
+    - echo "${RCLONE_CONF}" >> /root/.config/rclone/rclone.conf
+    - rclone copy ${DEB_PKG}.deb  ${RCLONE_DST}/deb/${DEB_PKG}.deb
+  only:
+   - master
+   - tags
