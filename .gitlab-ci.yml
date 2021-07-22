@@ -1,6 +1,7 @@
 variables:
   IMAGE_NAME: $CI_BUILD_RG/orvice/${CI_PROJECT_NAME}
   BIN_OUTPUT: bin/monitor-client
+  DEB_OUTPUT: bin/monitor-client.deb
 
 image: docker:latest
 services:
@@ -8,6 +9,7 @@ services:
 stages:
   - test
   - build
+  - build-debian
   - deploy
 
 include:
@@ -26,3 +28,16 @@ build-bin:
   script:
     - go mod download
     - make build
+
+build-deb:
+  image:
+    name: debian
+  stage: build-debian
+  tags:
+    - docker
+  artifacts:
+    paths:
+      - $DEB_OUTPUT
+  script:
+    - ./build/build_deb.sh
+    - ls
