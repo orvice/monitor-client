@@ -33,6 +33,7 @@ type NetInfo struct {
 
 type NodeStat struct {
 	NodeID   int32      `json:"node_id"`
+	NodeCode string     `json:"node_code"`
 	NodeName string     `json:"node_name"`
 	Stat     SystemInfo `json:"stat"`
 	Time     int64      `json:"time"`
