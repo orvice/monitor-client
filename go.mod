@@ -3,7 +3,7 @@ module github.com/orvice/monitor-client
 go 1.12
 
 require (
-	github.com/gin-gonic/gin v1.7.2
+	github.com/gin-gonic/gin v1.7.7
 	github.com/golang/protobuf v1.4.3
 	github.com/shirou/gopsutil/v3 v3.21.6
 	github.com/weeon/contract v0.0.0-20190520152601-a4ee53bdb563
