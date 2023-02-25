@@ -10,6 +10,6 @@ require (
 	github.com/weeon/log v0.0.0-20210217051817-63fe9a730962
 	github.com/weeon/utils v0.0.0-20190516112522-ce31b0983b8b
 	go.uber.org/zap v1.15.0
-	golang.org/x/net v0.0.0-20201202161906-c7110b5ffcbb
+	golang.org/x/net v0.7.0
 	google.golang.org/grpc v1.39.0
 )
